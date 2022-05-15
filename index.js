@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose =require('mongoose');
-const students =require('./routes/students')
-const grades =require('./routes/grades')
-const teachers =require('./routes/teachers')
+const students =require('./routes/students');
+const grades =require('./routes/grades');
+const teachers =require('./routes/teachers');
+const announcement = require('./routes/announcement');
 const app = express();
 
 mongoose.connect('mongodb://localhost/sms')
@@ -10,8 +11,9 @@ mongoose.connect('mongodb://localhost/sms')
   .catch(err => console.error('Could not connect to MongoDB...'));
 
 app.use(express.json());
-app.use("/api/students",students )
-app.use("/api/grades",grades )
-app.use("/api/teachers", teachers)
+app.use("/api/students",students);
+app.use("/api/grades",grades);
+app.use("/api/teachers", teachers);
+app.use('api/announcement', announcement);
 const port = process.env.PORT =5000;
 app.listen(port)
